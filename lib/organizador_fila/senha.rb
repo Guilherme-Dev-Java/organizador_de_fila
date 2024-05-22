@@ -1,24 +1,17 @@
 class Senha
-  attr_reader :numero, :hora, :senhas[]
+  attr_reader :numero, :hora, :senhas
+
+  def def initialize
+    @senhas = []
+  end
 
   def gerar_senha
 
     @numero = rand(100)
-    
-    loop do
-      if senhas.empty?
-
-        hora_senha = Time.now
-        @senhas << {senha: @numero, @hora = hora_senha}
-        
-      elsif !senhas.include?(@senha)
-          
-          hora_senha = Time.now
-          @senhas << {senha: @numero, @hora = hora_senha}
-      end
-
+    hora_senha = Time.now
+    unless @senhas.any?{|s| s[:senha] == numero}
+      @senhas << {senha: @numero, hora: hora_senha}
     end
-
   end
 
   def mostrar_senha
@@ -26,7 +19,7 @@ class Senha
     if senhas.empty?
       puts "Nenhuma Senha no sistema para ser atendida!"
     elsif
-      p senhas
+      p @senhas
     end
   end
 
